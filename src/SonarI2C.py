@@ -17,7 +17,7 @@ import time
 
 
 class SonarI2C(object):
-    def __init__(self, pi, int_gpio, bus=1, addr=0x3d, max_range_cm=400):
+    def __init__(self, pi, int_gpio, bus=1, addr=0x38, max_range_cm=400):
         """
         OctoSonarI2C, class for the Octosonar by Alastair Young
 
@@ -46,7 +46,8 @@ class SonarI2C(object):
         # Initiate i2c connection
         self._i2c_handle = self.pi.i2c_open(bus, addr)
         # The PCF8574 pins are set to high on power on. Set all pins to low.
-        self.pi.i2c_write_byte(self._i2c_handle, 0x00)
+        # nope, we want them high
+        self.pi.i2c_write_byte(self._i2c_handle, 0xff)
         # Set the INT GPIO pin to input
         self.pi.set_mode(self.int_gpio, pigpio.INPUT)
 
@@ -98,8 +99,7 @@ class SonarI2C(object):
             self._reading = False
             # trigger the sonar
             self.pi.i2c_zip(self._i2c_handle, [4, self.addr,
-                                               7, 1, (1 << port),
-                                               7, 1, 0x00,
+                                               7, 1, (~(1 << port)) & 0xff,
                                                0])
             timeout = time.time() + self._timeout
             while not self._reading:
