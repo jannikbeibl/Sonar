@@ -26,6 +26,7 @@ Raspberry Pi (any model) with Python. Tested with Python 2.7 and Python 3.4
 
 ### Hardware Set Up
 
+This branch of the library is forked from the [work by ageir](https://github.com/ageir/SonarI2C-RPi) which also used level shifting hardware to interface to the V1 OctoSonar board which used a NOR gate to demux the echo signals. The V2 OctoSonar is compatible with 3.3V controllers such as the Raspberry Pi, though still needs a separate 5V input to drive the sensors. So ageir's diagrams regarding level shifters have been removed from this README.
 
 ### Software Requirements
 
