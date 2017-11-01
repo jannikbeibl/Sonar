@@ -5,7 +5,7 @@ Raspberry Pi Python library for the Octosonar breakout board by Alastair Young.
 The original Arduino library: [github.com](https://github.com/arielnh56/SonarI2C)<br>
 Hackaday: [hackaday.io](https://hackaday.io/project/19950-hc-sr04-i2c-octopus-octosonar)<br>
 Blog: [redhunter.com](http://redhunter.com/blog/2016/04/28/sonari2c-multiple-hc-sr04-sensors-on-arduino-i2c/)<br>
-Buy it on Tindie: [tindie.com](https://www.tindie.com/products/arielnh56/octosonar-connect-8-x-hc-sr04-to-arduino/)<br>
+Buy it on Tindie: [tindie.com](https://www.tindie.com/products/10614/)<br>
 
 ## Summary
 
@@ -13,7 +13,8 @@ This is a Raspberry Pi Python library for the Octosonar by Alastair Young.
 
 The Octosonar is a breakout board for connecting eight ultrasonic sensors (HC-SR04) to a microcontroller (Arduino). This library adds support for the Raspberry Pi as well. It's connected via I2C and only needs three pins (SCL/SDA and INT) on the Pi.
 
-Will also work with a PCF8574 expander and a NOR gate. See Alastair's links above for more information on how to set that up.
+Will also work with a PCF8574 expander and tri-state buffers. 
+See Alastair's links above for more information on how to set that up.
 
 Note: This is not a direct port of the Arduino library. It works perfectly with the Octosonar but the functions and classes are not the same.
 
@@ -24,18 +25,6 @@ Raspberry Pi (any model) with Python. Tested with Python 2.7 and Python 3.4
 ## Getting Started
 
 ### Hardware Set Up
-
-![Breadboard Layout for the Octosonar with level converter](https://github.com/GoranLundberg/SonarI2C-RPi/blob/master/extras/Octosonar_I2C_bb.png)
-
-<b>Warning:<br>
-The Octosonar is a 5V device. You will need an I2C capable logic level converter or you WILL damage your Raspberry Pi! Do NOT connect the Octosonar directly to the Raspberry Pi!</b>
-
-It has been tested with this level converter from Adafruit.
-[https://www.adafruit.com/product/757](https://www.adafruit.com/product/757)<br>
-SparkFun also has one.
-[https://www.sparkfun.com/products/12009](https://www.sparkfun.com/products/12009)
-
-It should work with any I2C capable logic level converter.
 
 
 ### Software Requirements
