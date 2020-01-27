@@ -72,6 +72,7 @@ class SonarI2C(object):
             diff = pigpio.tickDiff(self._tick, tick)
             self._micros = diff
             self._reading = True
+	    self.pi.i2c_write_byte(self._i2c_handle, 0xff)
         self._edge += 1
 
     def cancel(self):
@@ -99,7 +100,7 @@ class SonarI2C(object):
             self._reading = False
             # trigger the sonar
             self.pi.i2c_zip(self._i2c_handle, [4, self.addr,
-                                               7, 1, (~(1 << port)) & 0xff,
+                                               7, 1, (~(1 << port)) & 0x7f,
                                                0])
             timeout = time.time() + self._timeout
             while not self._reading:
@@ -146,9 +147,9 @@ if __name__ == "__main__":
         octosonar = SonarI2C(pi, int_gpio=25)
         result_list = []
         while True:
-            for i in range(8):
+            for i in range(7):
                 sonar_result = octosonar.read_cm(i)
-                time.sleep(0.01)
+                time.sleep(0.001)
                 if sonar_result is False:
                     result_list.append("Timed out")
                 else:

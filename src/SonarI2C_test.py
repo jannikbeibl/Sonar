@@ -26,7 +26,7 @@ try:
     while True:
         for i in range(8):
             sonar_result = octosonar.read_cm(i)
-            time.sleep(0.01)
+            time.sleep(0.1)
             if sonar_result is False:
                 result_list.append("Timed out")
             else:
